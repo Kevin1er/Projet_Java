@@ -69,13 +69,15 @@ public class LoggedIn extends JFrame {
 		JMenuItem mntmNewMenuItem = new JMenuItem("Open File");
 		mnFile.add(mntmNewMenuItem);
 		
-		JMenuItem mntmExit = new JMenuItem("Exit");
-		mnFile.add(mntmExit);
-		mnFile.addActionListener(new ActionListener() {
+		JMenuItem mntmLogout = new JMenuItem("Log out");
+		mnFile.add(mntmLogout);
+		mntmLogout.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				Accueil acc = new Accueil();
+				acc.setVisible(true);
 			}
 		});
 		

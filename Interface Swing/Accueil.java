@@ -51,6 +51,16 @@ public class Accueil extends JFrame {
 		JButton btnConnexion = new JButton("Connexion");
 		btnConnexion.setBounds(231, 234, 146, 38);
 		contentPane.add(btnConnexion);
+		btnConnexion.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				setVisible(false);
+				LoggedIn log = new LoggedIn();
+				log.setVisible(true);
+			}
+		});
 		
 		JButton btnCreerUnCompte = new JButton("Creer un compte");
 		btnCreerUnCompte.setBounds(231, 304, 146, 38);
@@ -64,7 +74,6 @@ public class Accueil extends JFrame {
 						Inscription ins = new Inscription();
 						ins.setVisible(true);
 						
-					
 					}
 				});
 		
