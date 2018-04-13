@@ -1,0 +1,14 @@
+- chat
+- système d'abre de fichiers
+- création de projet, suppression, modification
+- création de nouveaux fichiers (HTML/CSS), suppression
+- visualisation instantanée
+- exportation du projet
+- auto completion
+- auto implementation
+- coloration syntaxique
+- importation de fichiers (HTML,CSS,PNG,...)
+- ajout de collaborateurs, suppression
+- fonction recherche dans le document
+- fonction de retour arrière/avant (Ctrl-z / Ctrl-y)
+- modification de compte (nom, email, mdp, ...)
