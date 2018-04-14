@@ -4,7 +4,7 @@
 --
 -- Hôte : 127.0.0.1:3306
 -- Généré le :  sam. 14 avr. 2018 à 17:01
--- Version du serveur :  5.7.19
+-- Version du serveur : 5.7.19
 -- Version de PHP :  5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
