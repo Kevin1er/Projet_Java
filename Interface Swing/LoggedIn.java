@@ -13,26 +13,16 @@ import javax.swing.JTree;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.sql.*;
+import javax.swing.JTextArea;
+import java.awt.Font;
+import java.awt.Scrollbar;
 
 public class LoggedIn extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoggedIn frame = new LoggedIn();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
@@ -71,6 +61,11 @@ public class LoggedIn extends JFrame {
 		
 		JMenuItem mntmLogout = new JMenuItem("Log out");
 		mnFile.add(mntmLogout);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		textArea.setBounds(146, 56, 612, 697);
+		contentPane.add(textArea);
 		mntmLogout.addActionListener(new ActionListener() {
 			
 			@Override
@@ -82,5 +77,21 @@ public class LoggedIn extends JFrame {
 		});
 		
 		
+	}
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoggedIn frame = new LoggedIn();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }
