@@ -13,6 +13,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.sql.*;
 
 public class Accueil extends JFrame {
@@ -29,7 +31,7 @@ public class Accueil extends JFrame {
 		Connexion c = new Connexion();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 636, 436);
+		setBounds(500, 300, 636, 436);
 		this.setTitle("Accueil");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));		
@@ -54,13 +56,15 @@ public class Accueil extends JFrame {
 			
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {				
+			public void actionPerformed(ActionEvent e) 
+			{				
 						try {
-							
-							if(c.connect(field_pseudo.getText(), field_pwd.getText())){
-								System.out.println(field_pseudo.getText());
-								System.out.println(field_pwd.getText());
-								System.out.println(c.connect(field_pseudo.getText(), field_pwd.getText()));
+							if (field_pseudo.getText().length()==0 && field_pwd.getText().length()==0){
+								System.out.println("TEST");	
+								JOptionPane.showMessageDialog(null, "Entrer un pseudonyme et un mot de passe valides");
+							}
+							else if(c.connect(field_pseudo.getText(), field_pwd.getText())){
+								
 								setVisible(false);
 								LoggedIn log = new LoggedIn();
 								log.setVisible(true);
@@ -68,17 +72,20 @@ public class Accueil extends JFrame {
 								c.c.close();
 							}
 							else if(field_pseudo.getText().equals("") || field_pwd.getText().equals("")){
+								JOptionPane.showMessageDialog(null, "Entrer un pseudonyme et un mot de passe valides");
 								
-								System.out.println(field_pseudo.getText());
-								
-								c.c.close();
 							}
+							else if (c.connect(field_pseudo.getText(), field_pwd.getText())==false){
+								JOptionPane.showMessageDialog(null, "Pseudonyme et mot de passe invalides");
+							}
+							
+							
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 						
-					}
+				}
 					
 				
 		});
@@ -114,10 +121,7 @@ public class Accueil extends JFrame {
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(256, 45, 56, 16);
 		contentPane.add(lblNewLabel);
-		
-		
-		
-		
+								
 	}
 	
 	/**
@@ -135,6 +139,4 @@ public class Accueil extends JFrame {
 			}
 		});
 	}
-	
-	
 }

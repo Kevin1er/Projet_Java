@@ -18,8 +18,6 @@ public class Connexion {
 		
 		try {
 			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bdd_jee","root","");
-
-			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -59,7 +57,7 @@ public class Connexion {
 	public static void main(String[] args) throws SQLException{
 		Connexion c = new Connexion();
 		
-		System.out.println(c.connect("dan", "rob"));
+		
 	}
 	
 	
