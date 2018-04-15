@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTree;
 import javax.swing.JMenuBar;
@@ -29,7 +30,7 @@ public class LoggedIn extends JFrame {
 	 */
 	public LoggedIn() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 952, 800);
+		setBounds(500, 100, 952, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -51,21 +52,41 @@ public class LoggedIn extends JFrame {
 		contentPane.add(menuBar);
 		
 		JMenu mnFile = new JMenu("File");
+		mnFile.setFont(new Font("Segoe UI", Font.PLAIN, 21));
 		menuBar.add(mnFile);
 		
 		JMenuItem mntmNewFile = new JMenuItem("New File");
+		mntmNewFile.setFont(new Font("Segoe UI", Font.PLAIN, 21));
 		mnFile.add(mntmNewFile);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Open File");
+		mntmNewMenuItem.setFont(new Font("Segoe UI", Font.PLAIN, 21));
 		mnFile.add(mntmNewMenuItem);
 		
 		JMenuItem mntmLogout = new JMenuItem("Log out");
+		mntmLogout.setFont(new Font("Segoe UI", Font.PLAIN, 21));
 		mnFile.add(mntmLogout);
 		
+		JMenu mnMembers = new JMenu("Members");
+		mnMembers.setFont(new Font("Segoe UI", Font.PLAIN, 21));
+		menuBar.add(mnMembers);
+		
+		JMenuItem mntmAddMember = new JMenuItem("Add Member");
+		mntmAddMember.setFont(new Font("Segoe UI", Font.PLAIN, 21));
+		mnMembers.add(mntmAddMember);
+		
+		JMenuItem mntmDeleteMember = new JMenuItem("Delete Member");
+		mntmDeleteMember.setFont(new Font("Segoe UI", Font.PLAIN, 21));
+		mnMembers.add(mntmDeleteMember);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		scrollPane.setBounds(146, 56, 612, 697);
+		contentPane.add(scrollPane);
+		
 		JTextArea textArea = new JTextArea();
-		textArea.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
-		textArea.setBounds(146, 56, 612, 697);
-		contentPane.add(textArea);
+		textArea.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
+		scrollPane.setViewportView(textArea);
 		mntmLogout.addActionListener(new ActionListener() {
 			
 			@Override

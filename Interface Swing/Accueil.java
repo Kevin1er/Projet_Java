@@ -31,7 +31,7 @@ public class Accueil extends JFrame {
 		Connexion c = new Connexion();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(500, 300, 636, 436);
+		setBounds(600, 300, 636, 436);
 		this.setTitle("Accueil");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));		

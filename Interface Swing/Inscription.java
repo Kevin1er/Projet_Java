@@ -31,7 +31,7 @@ public class Inscription extends JFrame {
 		Connexion c = new Connexion();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 636, 495);
+		setBounds(600, 300, 636, 495);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -64,7 +64,9 @@ public class Inscription extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				
+				setVisible(false);
+				Accueil acc = new Accueil();
+				acc.setVisible(true);
 			}
 		});
 		
