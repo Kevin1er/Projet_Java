@@ -52,42 +52,32 @@ public class Accueil extends JFrame {
 		JButton btnConnexion = new JButton("Connexion");
 		btnConnexion.setBounds(231, 234, 146, 38);
 		contentPane.add(btnConnexion);
-		btnConnexion.addActionListener(new ActionListener() {
-			
-			
+		btnConnexion.addActionListener(new ActionListener() 
+		{	
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{				
 						try {
 							if (field_pseudo.getText().length()==0 && field_pwd.getText().length()==0){
-								System.out.println("TEST");	
 								JOptionPane.showMessageDialog(null, "Entrer un pseudonyme et un mot de passe valides");
 							}
 							else if(c.connect(field_pseudo.getText(), field_pwd.getText())){
-								
 								setVisible(false);
 								LoggedIn log = new LoggedIn();
 								log.setVisible(true);
-								
 								c.c.close();
 							}
 							else if(field_pseudo.getText().equals("") || field_pwd.getText().equals("")){
 								JOptionPane.showMessageDialog(null, "Entrer un pseudonyme et un mot de passe valides");
-								
 							}
 							else if (c.connect(field_pseudo.getText(), field_pwd.getText())==false){
 								JOptionPane.showMessageDialog(null, "Pseudonyme et mot de passe invalides");
 							}
-							
-							
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						
 				}
-					
-				
 		});
 		
 		JButton btnCreerUnCompte = new JButton("Creer un compte");
@@ -102,13 +92,9 @@ public class Accueil extends JFrame {
 							
 							setVisible(false);
 							Inscription ins = new Inscription();
-							ins.setVisible(true);
-							
-						
+							ins.setVisible(true);				
 					}
 				});
-		
-		
 		
 		JLabel lblPseudo = new JLabel("Pseudo : ");
 		lblPseudo.setBounds(12, 136, 100, 38);

@@ -7,18 +7,20 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.sql.*;
 
 public class Inscription extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField field_pseudo;
 	private JLabel lblNewLabel_1;
-	private JTextField textField_1;
+	private JTextField field_pwd;
 	private JButton btnRetour;
 	private JButton btnValider;
 
@@ -26,6 +28,8 @@ public class Inscription extends JFrame {
 	 * Create the frame.
 	 */
 	public Inscription() {
+		Connexion c = new Connexion();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 636, 495);
 		contentPane = new JPanel();
@@ -34,10 +38,10 @@ public class Inscription extends JFrame {
 		this.setTitle("Inscription");
 		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(320, 131, 152, 38);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		field_pseudo = new JTextField();
+		field_pseudo.setBounds(320, 131, 152, 38);
+		contentPane.add(field_pseudo);
+		field_pseudo.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Entrer un pseudo :");
 		lblNewLabel.setBounds(77, 131, 152, 38);
@@ -47,10 +51,10 @@ public class Inscription extends JFrame {
 		lblNewLabel_1.setBounds(77, 241, 152, 38);
 		contentPane.add(lblNewLabel_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(320, 241, 152, 38);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		field_pwd = new JPasswordField();
+		field_pwd.setBounds(320, 241, 152, 38);
+		contentPane.add(field_pwd);
+		field_pwd.setColumns(10);
 		
 		btnRetour = new JButton("Retour");
 		btnRetour.setBounds(57, 350, 159, 38);
@@ -58,10 +62,9 @@ public class Inscription extends JFrame {
 		btnRetour.addActionListener(new ActionListener(){
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				Accueil acc = new Accueil();
-				acc.setVisible(true);
+			public void actionPerformed(ActionEvent e) 
+			{
+				
 			}
 		});
 		
@@ -73,10 +76,24 @@ public class Inscription extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				setVisible(false);
-				Accueil acc = new Accueil();
-				acc.setVisible(true);
+				try {
+					if (field_pseudo.getText().length()==0 && field_pwd.getText().length()==0){
+						JOptionPane.showMessageDialog(null, "Entrer un pseudonyme et un mot de passe valides");
+					}
+					else if(field_pseudo.getText().length()==0 || field_pwd.getText().length()==0){
+						JOptionPane.showMessageDialog(null, "Entrer un pseudonyme ET un mot de passe");
+					}
+					else if (field_pseudo.getText().length()>0 && field_pwd.getText().length()>0){
+						c.register(field_pseudo.getText(), field_pwd.getText());
+						setVisible(false);
+						Accueil acc = new Accueil();
+						acc.setVisible(true);
+						c.c.close();
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			}
 			
 			
@@ -99,5 +116,4 @@ public class Inscription extends JFrame {
 			}
 		});
 	}
-
 }
