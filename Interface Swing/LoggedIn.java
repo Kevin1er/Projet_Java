@@ -23,12 +23,11 @@ public class LoggedIn extends JFrame {
 
 	private JPanel contentPane;
 
-	
-
 	/**
 	 * Create the frame.
 	 */
 	public LoggedIn() {
+		Connexion c = new Connexion();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 100, 952, 800);
 		contentPane = new JPanel();
@@ -41,6 +40,8 @@ public class LoggedIn extends JFrame {
 		tree.setEditable(true);
 		tree.setBounds(0, 56, 134, 697);
 		contentPane.add(tree);
+		
+		
 		
 		JPanel chat = new JPanel();
 		chat.setBounds(770, 56, 164, 697);
@@ -58,6 +59,14 @@ public class LoggedIn extends JFrame {
 		JMenuItem mntmNewFile = new JMenuItem("New File");
 		mntmNewFile.setFont(new Font("Segoe UI", Font.PLAIN, 21));
 		mnFile.add(mntmNewFile);
+		mntmNewFile.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				NewFile f = new NewFile();
+				f.setVisible(true);
+			}
+		});
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Open File");
 		mntmNewMenuItem.setFont(new Font("Segoe UI", Font.PLAIN, 21));
