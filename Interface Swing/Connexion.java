@@ -23,8 +23,8 @@ public class Connexion {
 		}
 	}
 	
-	public boolean connect(String name, String pwd) throws SQLException{
-		
+	public boolean connect(String name, String pwd) throws SQLException
+	{
 		Statement st = c.createStatement();
 		ResultSet rs = st.executeQuery("SELECT pseudo, motdepasse FROM utilisateur WHERE pseudo = '"+name+"' AND motdepasse ='"+pwd+"';");
 		String result ="";
@@ -45,18 +45,27 @@ public class Connexion {
 		}
 	}
 	
-	public boolean register(String name, String pwd) throws SQLException{
+	public boolean register(String name, String pwd) throws SQLException
+	{
 		Statement st = c.createStatement();
-		
 		int rs = st.executeUpdate("INSERT INTO utilisateur VALUES ('"+name+"','"+pwd+"')");
 		st.close();
 		
 		return true;
 	}
 	
-	public static void main(String[] args) throws SQLException{
-		Connexion c = new Connexion();
+	public boolean saveFile(String name, String text) throws SQLException
+	{
+		Statement st = c.createStatement();
+		int rs = st.executeUpdate("INSERT INTO fichier (nom, contenu) VALUES ('"+name+"','"+text+"')");
+		st.close();
 		
+		return true;
+	}
+	
+	public static void main(String[] args) throws SQLException
+	{
+		Connexion c = new Connexion();
 		
 	}
 	

@@ -5,32 +5,34 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 
-public class NewFile extends JFrame {
+public class NewFolder extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-
+	private JButton btnCrer;
+	
+	
 	/**
 	 * Create the frame.
 	 */
-	public NewFile() {
-		setTitle("Nouveau fichier");
+	public NewFolder(LoggedIn log) {
+		setTitle("Nouveau dossier");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(700, 300, 400, 410);
+		setBounds(700, 300, 400, 392);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNomDuFichier = new JLabel("Nom du fichier :");
+		JLabel lblNomDuFichier = new JLabel("Nom du dossier :");
 		lblNomDuFichier.setBounds(51, 137, 152, 38);
 		contentPane.add(lblNomDuFichier);
 		
@@ -39,32 +41,37 @@ public class NewFile extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnCrer = new JButton("Cr\u00E9er");
-		btnCrer.setBounds(121, 206, 152, 38);
-		contentPane.add(btnCrer);
-		btnCrer.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		
-		
 		
 		JButton btnAnnuler = new JButton("Annuler");
-		btnAnnuler.setBounds(121, 287, 152, 38);
+		btnAnnuler.setBounds(121, 282, 152, 38);
 		contentPane.add(btnAnnuler);
 		btnAnnuler.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
+		
+		btnCrer = new JButton("Cr\u00E9er");
+		btnCrer.setBounds(121, 206, 152, 38);
+		contentPane.add(btnCrer);
+		btnCrer.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(textField.getText());
 				
+				log.root.add(new DefaultMutableTreeNode(textField.getText()));
+				
+				
+				NewFile f = new NewFile();
+				//f.setVisible(true);
 				setVisible(false);
 				
 			}
 		});
+		
 	}
 	
 	/**
@@ -74,12 +81,11 @@ public class NewFile extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NewFile frame = new NewFile();
-					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}	
+	}
 }
