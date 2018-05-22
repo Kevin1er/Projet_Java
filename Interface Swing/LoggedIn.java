@@ -6,10 +6,15 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeSelectionModel;
 import javax.swing.JTree;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -22,81 +27,34 @@ import java.awt.Scrollbar;
 public class LoggedIn extends JFrame {
 
 	private JPanel contentPane;
-
+	DefaultMutableTreeNode root;
+	JTree tree;
+	DefaultMutableTreeNode rootNode;
+	DefaultTreeModel treeModel;
+	JTextArea textArea2;
+	
 	/**
 	 * Create the frame.
 	 */
 	public LoggedIn() {
 		Connexion c = new Connexion();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(500, 100, 952, 800);
+		setBounds(500, 100, 952, 714);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		//contentPane.setLayout(null);
+		TreePanel p = new TreePanel();
+		p.setBounds(0, 65, 199, 602);
+		getContentPane().add(p);
 		setTitle("Connecté");
 		
-		JTree tree = new JTree();
-		tree.setEditable(true);
-		tree.setBounds(0, 56, 134, 697);
-		contentPane.add(tree);
 		
-		
-		
-		JPanel chat = new JPanel();
-		chat.setBounds(770, 56, 164, 697);
-		contentPane.add(chat);
-		chat.setBackground(Color.WHITE);
-		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 934, 57);
-		contentPane.add(menuBar);
-		
-		JMenu mnFile = new JMenu("File");
-		mnFile.setFont(new Font("Segoe UI", Font.PLAIN, 21));
-		menuBar.add(mnFile);
-		
-		JMenuItem mntmNewFile = new JMenuItem("New File");
-		mntmNewFile.setFont(new Font("Segoe UI", Font.PLAIN, 21));
-		mnFile.add(mntmNewFile);
-		mntmNewFile.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				NewFile f = new NewFile();
-				f.setVisible(true);
-			}
-		});
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Open File");
-		mntmNewMenuItem.setFont(new Font("Segoe UI", Font.PLAIN, 21));
-		mnFile.add(mntmNewMenuItem);
-		
-		JMenuItem mntmLogout = new JMenuItem("Log out");
-		mntmLogout.setFont(new Font("Segoe UI", Font.PLAIN, 21));
-		mnFile.add(mntmLogout);
-		
-		JMenu mnMembers = new JMenu("Members");
-		mnMembers.setFont(new Font("Segoe UI", Font.PLAIN, 21));
-		menuBar.add(mnMembers);
-		
-		JMenuItem mntmAddMember = new JMenuItem("Add Member");
-		mntmAddMember.setFont(new Font("Segoe UI", Font.PLAIN, 21));
-		mnMembers.add(mntmAddMember);
-		
-		JMenuItem mntmDeleteMember = new JMenuItem("Delete Member");
-		mntmDeleteMember.setFont(new Font("Segoe UI", Font.PLAIN, 21));
-		mnMembers.add(mntmDeleteMember);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
-		scrollPane.setBounds(146, 56, 612, 697);
-		contentPane.add(scrollPane);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
-		scrollPane.setViewportView(textArea);
-		mntmLogout.addActionListener(new ActionListener() {
+		JButton btnLogOut = new JButton("Log Out");
+		btnLogOut.setBounds(795, 0, 139, 66);
+		contentPane.add(btnLogOut);
+		btnLogOut.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -104,9 +62,40 @@ public class LoggedIn extends JFrame {
 				Accueil acc = new Accueil();
 				acc.setVisible(true);
 			}
+		});		
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		scrollPane.setBounds(187, 56, 571, 697);
+		//contentPane.add(scrollPane);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
+		scrollPane.setViewportView(textArea);
+		
+		JScrollPane scrollPane2 = new JScrollPane();
+		scrollPane2.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 20));
+		scrollPane2.setBounds(199, 65, 559, 602);
+		contentPane.add(scrollPane2);
+		
+		textArea2 = new JTextArea();
+		textArea2.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
+		scrollPane2.setViewportView(textArea2);
+		
+		JButton btnSaveFile = new JButton("Save File");
+		btnSaveFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					c.saveFile("fichier1", textArea2.getText());
+					c.c.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		});
-		
-		
+		btnSaveFile.setBounds(0, 0, 139, 66);
+		contentPane.add(btnSaveFile);
 	}
 	
 	/**
